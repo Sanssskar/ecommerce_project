@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Filament\Resources\Companies\Tables;
+namespace App\Filament\Resources\SocialLinks\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CompaniesTable
+class SocialLinksTable
 {
     public static function configure(Table $table): Table
     {
@@ -17,15 +16,6 @@ class CompaniesTable
             ->columns([
                 TextColumn::make('name')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
-                    ->searchable(),
-                TextColumn::make('phone')
-                    ->searchable(),
-                TextColumn::make('address')
-                    ->searchable(),
-                ImageColumn::make('logo')
-                    ->square(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

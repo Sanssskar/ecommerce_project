@@ -1,31 +1,28 @@
 <?php
 
-namespace App\Filament\Resources\Companies\Tables;
+namespace App\Filament\Resources\Colors\Tables;
 
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Columns\ColorColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
-class CompaniesTable
+class ColorsTable
 {
     public static function configure(Table $table): Table
     {
         return $table
             ->columns([
-                TextColumn::make('name')
+                ColorColumn::make('primary_color')
                     ->searchable(),
-                TextColumn::make('email')
-                    ->label('Email address')
+                ColorColumn::make('secondary_color')
                     ->searchable(),
-                TextColumn::make('phone')
+                ColorColumn::make('text_color')
                     ->searchable(),
-                TextColumn::make('address')
+                ColorColumn::make('bg_color')
                     ->searchable(),
-                ImageColumn::make('logo')
-                    ->square(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

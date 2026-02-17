@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Companies\Schemas;
 
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Schemas\Schema;
@@ -23,7 +25,7 @@ class CompanyForm
                     ->required(),
                 TextInput::make('address')
                     ->required(),
-                TextInput::make('logo')
+                FileUpload::make('logo')
                     ->required(),
                 Textarea::make('play_store_link')
                     ->default(null)
@@ -31,14 +33,23 @@ class CompanyForm
                 Textarea::make('ios_link')
                     ->default(null)
                     ->columnSpanFull(),
-                Textarea::make('policy')
+                RichEditor::make('policy')
                     ->required()
+                    ->extraAttributes([
+                        'style' => 'min-height: 250px;',
+                    ])
                     ->columnSpanFull(),
-                Textarea::make('how_to_order')
+                RichEditor::make('how_to_order')
                     ->required()
+                    ->extraAttributes([
+                        'style' => 'min-height: 250px;',
+                    ])
                     ->columnSpanFull(),
-                Textarea::make('terms')
+                RichEditor::make('terms')
                     ->required()
+                    ->extraAttributes([
+                        'style' => 'min-height: 250px;',
+                    ])
                     ->columnSpanFull(),
             ]);
     }
