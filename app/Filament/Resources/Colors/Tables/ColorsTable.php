@@ -15,13 +15,13 @@ class ColorsTable
     {
         return $table
             ->columns([
-                ColorColumn::make('primary_color')
+                ColorColumn::make('primary')
                     ->searchable(),
-                ColorColumn::make('secondary_color')
+                ColorColumn::make('secondary')
                     ->searchable(),
-                ColorColumn::make('text_color')
+                ColorColumn::make('text')
                     ->searchable(),
-                ColorColumn::make('bg_color')
+                ColorColumn::make('bg')
                     ->searchable(),
                 TextColumn::make('created_at')
                     ->dateTime()

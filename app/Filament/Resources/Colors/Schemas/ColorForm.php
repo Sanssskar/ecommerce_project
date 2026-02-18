@@ -12,13 +12,13 @@ class ColorForm
     {
         return $schema
             ->components([
-                ColorPicker::make('primary_color')
+                ColorPicker::make('primary')
                     ->required(),
-                ColorPicker::make('secondary_color')
+                ColorPicker::make('secondary')
                     ->required(),
-                ColorPicker::make('text_color')
+                ColorPicker::make('text')
                     ->required(),
-                ColorPicker::make('bg_color')
+                ColorPicker::make('bg')
                     ->required(),
             ]);
     }

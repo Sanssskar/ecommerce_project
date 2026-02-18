@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
-            $table->string('primary_color');
-            $table->string('secondary_color');
-            $table->string('text_color');
-            $table->string('bg_color');
+            $table->string('primary');
+            $table->string('secondary');
+            $table->string('text');
+            $table->string('bg');
             $table->timestamps();
         });
     }

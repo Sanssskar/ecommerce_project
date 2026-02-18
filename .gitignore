@@ -19,6 +19,7 @@
 /storage/*.key
 /storage/pail
 /vendor
+/public/fontawesome
 Homestead.json
 Homestead.yaml
 Thumbs.db
