@@ -10,16 +10,20 @@
     <link rel="stylesheet" href="{{ asset('fontawesome/css/all.min.css') }}">
     @stack('style')
     <style>
-        :root{
+        :root {
             --primary: {{ $color->primary }};
             --secondary: {{ $color->secondary }};
             --text: {{ $color->text }};
             --bg: {{ $color->bg }};
         }
+
+        .button {
+            cursor: pointer;
+        }
     </style>
 </head>
 
-<body>
+<body class="bg-(--bg)">
     @include('sweetalert::alert')
     <x-frontend-header />
     <main>
@@ -28,5 +32,6 @@
     <x-frontend-footer />
 
 </body>
+@stack('script')
 
 </html>

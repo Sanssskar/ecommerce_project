@@ -17,8 +17,8 @@ class PageController extends BaseController
         $request->validate([
             'client_name' => 'required|max:20',
             'shop_name' => 'required|max:50',
-            'contact' => 'required|integer|max:10',
-            'email' => 'required|unique',
+            'contact' => 'required|integer',
+            'email' => 'required',
             'address' => 'required',
             'password' => 'required',
         ]);
@@ -34,5 +34,7 @@ class PageController extends BaseController
         $client->logo = $request->logo;
         $client->expiry_date = $request->expiry_date;
         $client->save();
+        toast('Request sent succesfully','success');
+        return redirect()->back();
     }
 }
