@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ClientRequestNotification;
+use App\Models\Admin;
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PageController extends BaseController
 {
@@ -20,7 +23,6 @@ class PageController extends BaseController
             'contact' => 'required|integer',
             'email' => 'required',
             'address' => 'required',
-            'password' => 'required',
         ]);
 
 
@@ -29,11 +31,13 @@ class PageController extends BaseController
         $client->shop_name = $request->shop_name;
         $client->contact = $request->contact;
         $client->email = $request->email;
-        $client->password = $request->password;
         $client->address = $request->address;
         $client->logo = $request->logo;
-        $client->expiry_date = $request->expiry_date;
         $client->save();
+
+        $admin = Admin::first();
+
+        Mail::to($admin)->send(new ClientRequestNotification($client));
         toast('Request sent succesfully','success');
         return redirect()->back();
     }

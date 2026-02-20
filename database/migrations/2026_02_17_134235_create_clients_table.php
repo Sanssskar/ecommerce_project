@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('shop_name');
             $table->string('contact');
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('address');
             $table->string('logo')->nullable();
             $table->string('status')->default('pending');

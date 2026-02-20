@@ -122,13 +122,13 @@
                     </ul>
                 </div>
             @endif
-            <form class="space-y-5" action="{{ route('client-request') }}" method="POST" id="partnerForm">
+            <form class="space-y-5" action="{{ route('client-request') }}" method="POST" id="partnerForm" enctype="multipart/form-data">
                 @csrf
                 <!-- row: shop name & contact -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label for="client_name" class="block text-sm font-medium text-(--text) mb-1.5">
-                            <i class="fa-regular fa-user mr-2 text-(--primary)"></i>Full name <span
+                            <i class="fa-regular fa-user mr-2 text-(--primary)"></i>Your name <span
                                 class="text-red-500 mx-2">*</span>
                         </label>
 
@@ -137,7 +137,7 @@
                     </div>
                     <div>
                         <label for="shop_name" class="block text-sm font-medium text-(--text) mb-1.5">
-                           <i class="fa-solid fa-business-time mr-2 text-(--primary)"></i></i>Business name <span
+                           <i class="fa-solid fa-business-time mr-2 text-(--primary)"></i>Business name <span
                                 class="text-red-500 mx-2">*</span>
                         </label>
                         <input type="text" placeholder="e.g. Dhedo Dokan" id="shop_name" name="shop_name" value="{{ old('shop_name') }}"
@@ -162,16 +162,6 @@
                     <input type="email" placeholder="owner@restaurant.com" id="email" name="email" value="{{ old('email') }}"
                         class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-white focus:border-(--primary) focus:ring-2 focus:ring-(--primary)/10 transition-all text-(--text)">
                 </div>
-                <div>
-                    <label for="password" class="block text-sm font-medium text-(--text) mb-1.5">
-                        <i class="fa-solid fa-lock mr-2 text-(--primary)"></i>Create password <span
-                            class="text-red-500 mx-2">*</span>
-                    </label>
-                    <input type="password" placeholder="········" minlength="8" name="password" id="password"
-                        class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-white focus:border-(--primary) focus:ring-2 focus:ring-(--primary)/10 transition-all text-(--text)">
-                    <p class="text-xs text-(--text)/40 mt-1">Minimum 8 characters</p>
-                </div>
-
                 <!-- address -->
                 <div>
                     <label for="address" class="block text-sm font-medium text-(--text) mb-1.5">
@@ -184,28 +174,31 @@
 
                 <!-- logo + expiry -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- logo upload -->
+                    <!-- logo upload with preview -->
                     <div>
                         <label for="logoUpload" class="block text-sm font-medium text-(--text) mb-1.5">
                             <i class="fa-solid fa-image mr-2 text-(--primary)"></i>Business logo (optional)
                         </label>
+
+                        <!-- Image preview container -->
+                        <div id="logoPreviewContainer" class="mb-3 hidden">
+                            <div class="relative inline-block">
+                                <img id="logoPreview" src="#" alt="Logo preview" class="w-20 h-20 rounded-lg object-cover border-2 border-(--primary)/30">
+                                <button type="button" id="removeLogo" class="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs hover:bg-red-600 transition-colors">
+                                    <i class="fa-solid fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+
                         <div class="relative">
                             <input type="file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer"
                                 name="logo" id="logoUpload">
-                            <div
+                            <div id="logoUploadTrigger"
                                 class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-white flex items-center gap-3 text-(--text)/60 hover:bg-slate-50 transition-colors">
                                 <i class="fa-solid fa-cloud-upload-alt text-(--primary)"></i>
-                                <span class="text-sm truncate">Upload image</span>
+                                <span id="uploadText" class="text-sm truncate">Upload image</span>
                             </div>
                         </div>
-                    </div>
-                    <!-- expiry date -->
-                    <div>
-                        <label for="expiry_date" class="block text-sm font-medium text-(--text) mb-1.5">
-                            <i class="fa-solid fa-calendar mr-2 text-(--primary)"></i>Trial expiry (optional)
-                        </label>
-                        <input type="date" name="expiry_date" id="expiry_date" value="{{ old('expiry_date') }}"
-                            class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-white focus:border-(--primary) focus:ring-2 focus:ring-(--primary)/10 transition-all text-(--text)">
                     </div>
                 </div>
 
@@ -226,7 +219,7 @@
                 <!-- submit button (disabled by default) - YOUR SCRIPT COLORS UNCHANGED -->
                 <button type="submit" id="submitBtn" disabled
                     class="w-full bg-(--primary) cursor-not-allowed font-semibold py-4 rounded-xl shadow-md transition-all flex items-center justify-center gap-3 text-base mt-4 disabled:opacity-60 disabled:pointer-events-none text-white">
-                    <i class="fa-regular fa-hand-point-up mr-2 text-(--primary) text-2xl"></i></i> Create my account
+                    <i class="fa-regular fa-hand-point-up mr-2 text-2xl"></i> Create my account
                 </button>
 
                 <p class="text-xs text-center text-(--text)/40 mt-4">
@@ -263,12 +256,60 @@
                     }
                 });
 
-                // prevent actual form submission (demo only)
-                form.addEventListener('submit', function(e) {
-                    e.preventDefault();
-                    if (checkbox.checked) {
-                        alert('Form submitted (demo) — thank you!');
+                // // prevent actual form submission (demo only)
+                // form.addEventListener('submit', function(e) {
+                //     e.preventDefault();
+                //     if (checkbox.checked) {
+                //         alert('Form submitted (demo) — thank you!');
+                //     }
+                // });
+            }
+
+            // NEW: Image preview functionality
+            const logoUpload = document.getElementById('logoUpload');
+            const logoPreview = document.getElementById('logoPreview');
+            const logoPreviewContainer = document.getElementById('logoPreviewContainer');
+            const uploadText = document.getElementById('uploadText');
+            const removeBtn = document.getElementById('removeLogo');
+
+            if (logoUpload) {
+                logoUpload.addEventListener('change', function(e) {
+                    const file = e.target.files[0];
+
+                    if (file) {
+                        // Check if file is an image
+                        if (!file.type.startsWith('image/')) {
+                            alert('Please select an image file');
+                            this.value = '';
+                            return;
+                        }
+
+                        // Check file size (max 2MB)
+                        if (file.size > 2 * 1024 * 1024) {
+                            alert('File size should be less than 2MB');
+                            this.value = '';
+                            return;
+                        }
+
+                        const reader = new FileReader();
+
+                        reader.onload = function(e) {
+                            logoPreview.src = e.target.result;
+                            logoPreviewContainer.classList.remove('hidden');
+                            uploadText.textContent = file.name;
+                        }
+
+                        reader.readAsDataURL(file);
                     }
+                });
+            }
+
+            // Remove image preview
+            if (removeBtn) {
+                removeBtn.addEventListener('click', function() {
+                    logoUpload.value = '';
+                    logoPreviewContainer.classList.add('hidden');
+                    uploadText.textContent = 'Upload image';
                 });
             }
         })();

@@ -79,7 +79,8 @@
 </section>
 
 <!-- Add search feedback element that was missing -->
-<div id="searchFeedback" class="container mx-auto px-4 sm:px-8 mt-4 text-(--text)/60 text-sm hidden"></div>
+<div id="searchFeedback" class="container mx-auto px-4 sm:px-8 mt-4 text-(--text)/60 text-sm hidden">
+</div>
 
 @push('script')
     <script>
@@ -105,7 +106,7 @@
             function updateSearchFeedback() {
                 if (!searchFeedback) return;
                 const val = searchInput.value.trim();
-                searchFeedback.innerText = val === '' ? '—' : `“${val}”`;
+                searchFeedback.innerText = val === '' ?  : `“${val}”`;
                 searchFeedback.classList.remove('hidden');
             }
 
