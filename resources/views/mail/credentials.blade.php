@@ -147,8 +147,8 @@
                             </div>
 
                             <p style="margin:0 0 32px;">
-                                <a href="{{ url('/client') }}" class="btn"
-                                    style="color:#ffffff !important;">Login to Your Dashboard →</a>
+                                <a href="{{ url('/client') }}" class="btn" style="color:#ffffff !important;">Login to
+                                    Your Dashboard →</a>
                             </p>
 
                             <p style="margin:0 0 12px; font-size:14px; color:#6b7280;">

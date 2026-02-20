@@ -127,12 +127,12 @@
                 <!-- row: shop name & contact -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label for="client_name" class="block text-sm font-medium text-(--text) mb-1.5">
+                        <label for="name" class="block text-sm font-medium text-(--text) mb-1.5">
                             <i class="fa-regular fa-user mr-2 text-(--primary)"></i>Your name <span
                                 class="text-red-500 mx-2">*</span>
                         </label>
 
-                        <input type="text" placeholder="e.g. Sanskar Dai" name="client_name" id="client_name" value="{{ old('client_name') }}"
+                        <input type="text" placeholder="e.g. Sanskar Dai" name="name" id="name" value="{{ old('name') }}"
                             class="w-full px-5 py-3.5 rounded-xl border border-slate-200 bg-white focus:border-(--primary) focus:ring-2 focus:ring-(--primary)/10 transition-all text-(--text)">
                     </div>
                     <div>
