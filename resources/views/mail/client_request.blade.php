@@ -63,7 +63,7 @@
                   <img src="{{ $client->logo }}" alt="{{ $client->shop_name ?? 'Logo' }}" style="width:100%; height:100%; object-fit:contain; display:block;">
                 @else
                   <div style="width:100%; height:100%; background:linear-gradient(135deg, #6366f1, #8b5cf6); color:#ffffff; font-size:40px; font-weight:700; display:flex; align-items:center; justify-content:center; border-radius:10px;">
-                    {{ strtoupper(substr(trim($client->shop_name ?? $client->client_name ?? 'N'), 0, 2)) }}
+                    {{ strtoupper(substr(trim($client->shop_name ?? $client->name ?? 'N'), 0, 2)) }}
                   </div>
                 @endif
               </div>
@@ -89,7 +89,7 @@
                   <td width="50%" valign="top" style="padding:0 10px 20px;">
                     <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="background:#f9fafb; border-radius:12px; padding:18px; border:1px solid #e5e7eb;">
                       <tr><td style="font-size:12px; font-weight:600; color:#6b7280; text-transform:uppercase; letter-spacing:0.4px;">Owner</td></tr>
-                      <tr><td style="font-size:16px; font-weight:600; color:#111827; padding-top:4px;">{{ $client->client_name ?? '—' }}</td></tr>
+                      <tr><td style="font-size:16px; font-weight:600; color:#111827; padding-top:4px;">{{ $client->name ?? '—' }}</td></tr>
                     </table>
                   </td>
                   <td width="50%" valign="top" style="padding:0 10px 20px;">
@@ -130,13 +130,13 @@
               <table role="presentation" border="0" cellspacing="0" cellpadding="0" style="margin:0 auto;">
                 <tr>
                   <td style="padding:0 8px;">
-                    <a href="#" style="display:inline-block; min-width:160px; padding:14px 28px; background:#10b981; color:#ffffff; font-size:15px; font-weight:600; text-decoration:none; border-radius:10px;">Approve</a>
+                    <a href="/admin" style="display:inline-block; min-width:160px; padding:14px 28px; background:#10b981; color:#ffffff; font-size:15px; font-weight:600; text-decoration:none; border-radius:10px;">Approve</a>
                   </td>
                   <td style="padding:0 8px;">
-                    <a href="#" style="display:inline-block; min-width:160px; padding:14px 28px; background:#3b82f6; color:#ffffff; font-size:15px; font-weight:600; text-decoration:none; border-radius:10px;">Review</a>
+                    <a href="/admin" style="display:inline-block; min-width:160px; padding:14px 28px; background:#3b82f6; color:#ffffff; font-size:15px; font-weight:600; text-decoration:none; border-radius:10px;">Review</a>
                   </td>
                   <td style="padding:0 8px;">
-                    <a href="#" style="display:inline-block; min-width:160px; padding:14px 28px; background:#ef4444; color:#ffffff; font-size:15px; font-weight:600; text-decoration:none; border-radius:10px;">Decline</a>
+                    <a href="/admin" style="display:inline-block; min-width:160px; padding:14px 28px; background:#ef4444; color:#ffffff; font-size:15px; font-weight:600; text-decoration:none; border-radius:10px;">Decline</a>
                   </td>
                 </tr>
               </table>

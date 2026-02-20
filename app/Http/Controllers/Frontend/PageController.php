@@ -18,7 +18,7 @@ class PageController extends BaseController
     public function clientRequest(Request $request)
     {
         $request->validate([
-            'client_name' => 'required|max:20',
+            'name' => 'required|max:20',
             'shop_name' => 'required|max:50',
             'contact' => 'required|integer',
             'email' => 'required',
@@ -27,7 +27,7 @@ class PageController extends BaseController
 
 
         $client = new Client();
-        $client->client_name = $request->client_name;
+        $client->name = $request->name;
         $client->shop_name = $request->shop_name;
         $client->contact = $request->contact;
         $client->email = $request->email;
