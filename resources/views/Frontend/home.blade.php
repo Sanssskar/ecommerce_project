@@ -124,7 +124,6 @@
             @endif
             <form class="space-y-5" action="{{ route('client-request') }}" method="POST" id="partnerForm" enctype="multipart/form-data">
                 @csrf
-                <!-- row: shop name & contact -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label for="name" class="block text-sm font-medium text-(--text) mb-1.5">
