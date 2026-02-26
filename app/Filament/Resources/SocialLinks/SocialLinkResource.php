@@ -17,6 +17,8 @@ use Filament\Tables\Table;
 class SocialLinkResource extends Resource
 {
     protected static ?string $model = SocialLink::class;
+    protected static ?string $modelLabel = "Social Link";
+    protected static ?string $pluralModelLabel = "Social Link";
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 
