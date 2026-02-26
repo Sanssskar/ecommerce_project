@@ -19,7 +19,7 @@ class ClientForm
                     ->columns(2)
                     ->columnSpanFull()
                     ->schema([
-                        TextInput::make('client_name')
+                        TextInput::make('name')
                             ->required(),
                         TextInput::make('shop_name')
                             ->required(),

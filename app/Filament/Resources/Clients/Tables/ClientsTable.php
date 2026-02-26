@@ -18,7 +18,7 @@ class ClientsTable
     {
         return $table
             ->columns([
-                TextColumn::make('client_name')
+                TextColumn::make('name')
                     ->searchable(),
                 TextColumn::make('shop_name')
                     ->searchable(),
