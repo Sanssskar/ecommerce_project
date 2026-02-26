@@ -19,6 +19,8 @@ class ColorResource extends Resource
     protected static ?string $model = Color::class;
     protected static ?string $modelLabel = "Color";
     protected static ?string $pluralModelLabel = "Color";
+    protected static ?int $navigationSort = 3;
+
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

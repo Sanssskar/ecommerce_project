@@ -19,6 +19,8 @@ class ClientResource extends Resource
     protected static ?string $model = Client::class;
     protected static ?string $modelLabel = "Client";
     protected static ?string $pluralModelLabel = "Client";
+    protected static ?int $navigationSort = 4;
+
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::UserGroup;
 
